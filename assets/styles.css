@@ -108,7 +108,8 @@ header {
 .btn-gmu-outline {
     background-color: transparent;
     border: 2px solid var(--gmu-green);
-    color: var(--gmu-green);
+    color: var(--gmu-gold);
+    font-weight: 500;
 }
 
 .btn-gmu-outline:hover {
@@ -522,11 +523,20 @@ footer p {
     padding: 2rem 1.5rem;
 }
 
+/* Section spacing */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+/* Mission card styles */
+.card.mb-4 {
+    margin-bottom: 2rem !important;
+}
+
 /* Fix card grid spacing */
 .row.g-4 {
     --bs-gutter-x: 2rem;
     --bs-gutter-y: 2rem;
-    margin-top: calc(-1 * var(--bs-gutter-y));
     margin-right: calc(-.5 * var(--bs-gutter-x));
     margin-left: calc(-.5 * var(--bs-gutter-x));
 }
@@ -580,7 +590,7 @@ footer p {
 
 /* Saved card styles */
 #savedCardSection .card {
-    border: 1px solid #dee2e6;
+    border: 1px solid  #FFCC33;
     transition: border-color 0.2s;
 }
 
@@ -591,4 +601,67 @@ footer p {
 #savedCardSection .form-check-input:checked {
     background-color: var(--gmu-green);
     border-color: var(--gmu-green);
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mission-section {
+    padding: 1rem 0;
+}
+
+.developers-section {
+    padding: 1rem 0;
+}
+
+.developers-section .card {
+    height: 100%;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.developers-section .card:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        gap: 1.5rem;
+    }
+    
+    .mission-section,
+    .developers-section {
+        padding: 0.5rem 0;
+    }
+    
+    .about-title {
+        font-size: 1.75rem;
+    }
+    
+    .developers-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Adjust title sizes */
+.about-title {
+    margin-top: 1rem !important;
+    font-size: 2rem;
+    color: var(--gmu-gold);
+}
+
+.developers-title {
+    font-size: 1.75rem;
+    color: var(--gmu-gold);
+    margin-top: 2rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Controls spacing between developer cards */
+.row.g-5 {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 2rem;
 } 
