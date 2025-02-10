@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Item - Instant Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Instant Market</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link active" href="seller-dashboard.html">Dashboard</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4">List Your Item</h1>
+                        <form id="sellForm" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Item Title</label>
+                                <input type="text" class="form-control" id="title" required>
+                                <div class="invalid-feedback">
+                                    Please provide a title for your item.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="3" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please provide a description.
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="price" class="form-label">Price ($)</label>
+                                    <input type="number" class="form-control" id="price" min="0" step="0.01" required>
+                                    <div class="invalid-feedback">
+                                        Please set a valid price.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="category" class="form-label">Category</label>
+                                    <select class="form-select" id="category" required>
+                                        <option value="">Choose category...</option>
+                                        <option value="textbooks">Textbooks</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="furniture">Furniture</option>
+                                        <option value="clothing">Clothing</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a category.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="condition" class="form-label">Condition</label>
+                                <select class="form-select" id="condition" required>
+                                    <option value="">Select condition...</option>
+                                    <option value="New">New</option>
+                                    <option value="Like New">Like New</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Used">Used</option>
+                                    <option value="For Parts">For Parts</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select the item's condition.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image URL</label>
+                                <input type="url" class="form-control" id="image" 
+                                       placeholder="https://example.com/image.jpg" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid image URL.
+                                </div>
+                                <small class="text-muted">For demo purposes, use any valid image URL</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contact" class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" id="contact" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email address.
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100">List Item</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="modal fade" id="successModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Success!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        Your item has been listed successfully!
+                    </div>
+                    <div class="modal-footer">
+                        <a href="products.html" class="btn btn-primary">View Listings</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">List Another Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Instant Market - GMU Student Marketplace</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/sell.js"></script>
+</body>
+</html> 

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Products - Instant Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Instant Market</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="products.html">Browse</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.html">
+                                Cart <span id="cartCount" class="badge bg-danger rounded-pill"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="order-history.html">Orders</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1>Browse Products</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
+                    <button class="btn btn-success" type="button" id="searchButton">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Filters</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-select" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="textbooks">Textbooks</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="furniture">Furniture</option>
+                                <option value="clothing">Clothing</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price Range</label>
+                            <div class="d-flex gap-2">
+                                <input type="number" class="form-control" id="minPrice" placeholder="Min">
+                                <input type="number" class="form-control" id="maxPrice" placeholder="Max">
+                            </div>
+                        </div>
+                        <button class="btn btn-success w-100" id="applyFilters">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="productsGrid" class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+                <div class="mt-4">
+                    <h3>Similar Items</h3>
+                    <div id="recommendationsContainer" class="row row-cols-1 row-cols-md-3 g-4">
+                        <!-- Recommendations will be inserted here -->
+                    </div>
+                </div>
+                <!-- Product Details Modal -->
+                <div class="modal fade" id="productModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Product Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body" id="productModalContent">
+                                <!-- Product details will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Instant Market - GMU Student Marketplace</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/products.js"></script>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cartToast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Cart Updated</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="cartToastBody">
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

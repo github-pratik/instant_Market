@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Market - GMU Student Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Instant Market</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="products.html">Browse</a></li>
+                    <li class="nav-item seller-only"><a class="nav-link" href="sell.html">Sell</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart <span id="cartCount" class="badge bg-danger rounded-pill"></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="order-history.html">Orders</a></li>
+                </ul>
+                <form class="d-flex search-form">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search products..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to Instant Market</h1>
+            <p>Buy and sell items within the GMU community</p>
+            <div class="cta-buttons">
+                <a href="products.html" class="btn btn-gmu">Browse Items</a>
+                <a href="cart.html" class="btn btn-gmu-outline">View Cart</a>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <h2 class="section-header">Recommended for You</h2>
+            <div id="personalizedRecommendations" class="row"></div>
+        </section>
+
+        <section class="featured-products">
+            <h2 class="section-header">Featured Items</h2>
+            <div id="featured-items-grid" class="row"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Instant Market - GMU Student Marketplace</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/ai-recommend.js"></script>
+</body>
+</html>
+ 
