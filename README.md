@@ -139,10 +139,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Pratik Patil - ppatil8@gmu.edu
+Pratik  Patil  - ppatil8@gmu.edu
 Yash Sanap - ysanap@gmu.edu
 
-Project Link: [https://github.com/your-username/instant-market](https://github.com/your-username/instant-market)
 
 nstant-market/
 ├── assets/
@@ -169,3 +168,12 @@ nstant-market/
 ├── seller-dashboard.html
 ├── receipt.html
 ├── products.html
+├── about.html
+├── sell.html
+├── home.html
+├── order-history.html
+├── receipt.html
+├── seller-dashboard.html
+├── products.html   
+
+
