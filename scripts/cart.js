@@ -127,20 +127,59 @@ function generateReceipt(orderDetails) {
         ===================================
     `;
 
-    // Create blob and download receipt
-    const blob = new Blob([receipt], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `receipt_${orderDetails.orderId}.txt`;
-    a.click();
-    window.URL.revokeObjectURL(url);
+    // Show receipt in modal
+    const receiptContent = document.getElementById('receiptContent');
+    receiptContent.textContent = receipt;
+    
+    // Hide payment modal and show receipt modal
+    bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+    const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
+    receiptModal.show();
+    
+    // Add download button handler
+    document.getElementById('downloadReceiptBtn').onclick = () => {
+        const blob = new Blob([receipt], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `receipt_${orderDetails.orderId}.txt`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    };
+    
+    // Store order details
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(orderDetails);
+    localStorage.setItem('orders', JSON.stringify(orders));
 }
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     updateCartDisplay();
     updateCartCount();
+
+    // Payment method toggle
+    const paymentMethod = document.getElementById('paymentMethod');
+    const newCardSection = document.getElementById('newCardSection');
+    const savedCardSection = document.getElementById('savedCardSection');
+    
+    paymentMethod.addEventListener('change', (e) => {
+        if (e.target.value === 'saved') {
+            newCardSection.style.display = 'none';
+            savedCardSection.style.display = 'block';
+            // Remove required attributes from new card fields
+            document.querySelectorAll('#newCardSection input').forEach(input => {
+                input.removeAttribute('required');
+            });
+        } else {
+            newCardSection.style.display = 'block';
+            savedCardSection.style.display = 'none';
+            // Add back required attributes
+            document.querySelectorAll('#newCardSection input:not(#saveCard)').forEach(input => {
+                input.setAttribute('required', '');
+            });
+        }
+    });
 
     // Checkout button
     const checkoutBtn = document.getElementById('checkoutBtn');
@@ -165,6 +204,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const tax = subtotal * 0.06;
             const total = subtotal + tax;
             
+            // Get last four digits based on payment method
+            let lastFour;
+            if (paymentMethod.value === 'saved') {
+                lastFour = document.querySelector('input[name="savedCard"]:checked').value;
+            } else {
+                lastFour = document.getElementById('cardNumber').value.slice(-4);
+                
+                // Save card if checkbox is checked
+                if (document.getElementById('saveCard').checked) {
+                    const savedCards = JSON.parse(localStorage.getItem('savedCards') || '[]');
+                    savedCards.push({
+                        lastFour: lastFour,
+                        name: document.getElementById('cardName').value,
+                        expiry: document.getElementById('expiry').value
+                    });
+                    localStorage.setItem('savedCards', JSON.stringify(savedCards));
+                }
+            }
+            
             const orderDetails = {
                 orderId: 'ORD' + Date.now(),
                 date: new Date().toLocaleString(),
@@ -172,21 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 tax: tax,
                 total: total,
                 userId: JSON.parse(sessionStorage.getItem('userSession')).username,
-                lastFour: document.getElementById('cardNumber').value.slice(-4),
+                lastFour: lastFour,
                 items: cart.map(item => ({
                     title: item.title,
                     quantity: item.quantity,
                     price: item.price,
-                    sellerId: item.sellerId || 'admin' // Default to admin for sample products
+                    sellerId: item.sellerId || 'admin'
                 }))
             };
 
-            // Save order to localStorage
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            orders.push(orderDetails);
-            localStorage.setItem('orders', JSON.stringify(orders));
-
-            // Generate and download receipt
+            // Generate and show receipt
             generateReceipt(orderDetails);
 
             // Clear cart
@@ -195,14 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartDisplay();
             updateCartCount();
 
-            // Close modal and show success message
-            bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
-            alert('Thank you for your purchase! Your receipt has been downloaded.');
-            
-            // Redirect to home page after successful purchase
-            setTimeout(() => {
+            // Add event listener for when receipt modal is closed
+            document.getElementById('receiptModal').addEventListener('hidden.bs.modal', () => {
                 window.location.href = 'home.html';
-            }, 1500);
+            }, { once: true });
         });
     }
 }); 

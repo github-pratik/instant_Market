@@ -559,4 +559,36 @@ footer p {
         --bs-gutter-x: 1rem;
         --bs-gutter-y: 1rem;
     }
+}
+
+/* Receipt styles */
+#receiptContent {
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+#downloadReceiptBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Saved card styles */
+#savedCardSection .card {
+    border: 1px solid #dee2e6;
+    transition: border-color 0.2s;
+}
+
+#savedCardSection .card:hover {
+    border-color: var(--gmu-green);
+}
+
+#savedCardSection .form-check-input:checked {
+    background-color: var(--gmu-green);
+    border-color: var(--gmu-green);
 } 

@@ -92,30 +92,86 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="paymentForm">
-                            <div class="mb-3">
-                                <label for="cardName" class="form-label">Name on Card</label>
-                                <input type="text" class="form-control" id="cardName" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cardNumber" class="form-label">Card Number</label>
-                                <input type="text" class="form-control" id="cardNumber" 
-                                       pattern="\d{16}" placeholder="1234567890123456" required>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <label for="expiry" class="form-label">Expiry Date</label>
-                                    <input type="text" class="form-control" id="expiry" 
-                                           pattern="\d{2}/\d{2}" placeholder="MM/YY" required>
+                        <div class="mb-3">
+                            <label class="form-label">Payment Method</label>
+                            <select class="form-control" id="paymentMethod">
+                                <option value="new">New Card</option>
+                                <option value="saved">Saved Card</option>
+                            </select>
+                        </div>
+                        
+                        <div id="savedCardSection" style="display: none;">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1">Visa ending in 4242</h6>
+                                            <small class="text-muted">Expires: 12/25</small>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" 
+                                                   name="savedCard" value="4242" checked>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <label for="cvv" class="form-label">CVV</label>
-                                    <input type="text" class="form-control" id="cvv" 
-                                           pattern="\d{3}" placeholder="123" required>
+                            </div>
+                        </div>
+
+                        <form id="paymentForm">
+                            <div id="newCardSection">
+                                <div class="mb-3">
+                                    <label for="cardName" class="form-label">Name on Card</label>
+                                    <input type="text" class="form-control" id="cardName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" 
+                                           pattern="\d{16}" placeholder="1234567890123456" required>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label for="expiry" class="form-label">Expiry Date</label>
+                                        <input type="text" class="form-control" id="expiry" 
+                                               pattern="\d{2}/\d{2}" placeholder="MM/YY" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="cvv" class="form-label">CVV</label>
+                                        <input type="text" class="form-control" id="cvv" 
+                                               pattern="\d{3}" placeholder="123" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="saveCard">
+                                        <label class="form-check-label" for="saveCard">
+                                            Save this card for future purchases
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-gmu w-100">Pay Now</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Receipt Modal -->
+        <div class="modal fade" id="receiptModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Order Receipt</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <pre id="receiptContent" class="bg-light p-3 rounded"></pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-gmu" id="downloadReceiptBtn">
+                            <i class="bi bi-download"></i> Download Receipt
+                        </button>
                     </div>
                 </div>
             </div>
