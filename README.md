@@ -132,12 +132,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- George Mason University
-- Dr. Vinod Dubey (Project Supervisor)
-- Bootstrap Team
-- All contributors and testers
-
-## Contact
 
 Pratik  Patil  - ppatil8@gmu.edu
 Yash Sanap - ysanap@gmu.edu
