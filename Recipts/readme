@@ -44,19 +44,9 @@ Instant Market is a web-based marketplace platform designed specifically for GMU
 
 2. Navigate to the project directory
 
-3
 3. Open the project in your preferred code editor
 
-4. Start a local server
-   - Using Python 3:
-     ```bash
-     python -m http.server 8000
-     ```
-   - Using Node.js's http-server:
-     ```bash
-     npx http-server
-     ```
-   - Using VS Code's Live Server extension
+- Using VS Code's Live Server extension
 
 5. Access the application at `http://localhost:8000` (or the port provided by your server)
 
@@ -116,34 +106,6 @@ The receipt generation system works as follows:
 
 ## Project Structure
 
-
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- George Mason University
-- Dr. Vinod Dubey (Project Supervisor)
-- Bootstrap Team
-- All contributors and testers
-
-## Contact
-
-Pratik Patil - ppatil8@gmu.edu
-Yash Sanap - ysanap@gmu.edu
-
-Project Link: [https://github.com/your-username/instant-market](https://github.com/your-username/instant-market)
-
 nstant-market/
 ├── assets/
 │ ├── images/
@@ -169,3 +131,23 @@ nstant-market/
 ├── seller-dashboard.html
 ├── receipt.html
 ├── products.html
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+Pratik Patil - ppatil8@gmu.edu
+Yash Sanap - ysanap@gmu.edu
+
+
+
