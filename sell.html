@@ -11,13 +11,14 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Instant Market</a>
+                <a class="navbar-brand" href="seller-dashboard.html">Instant Market</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link active" href="seller-dashboard.html">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="seller-dashboard.html">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="sell.html">List New Product</a></li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
@@ -89,13 +90,49 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="image" class="form-label">Image URL</label>
-                                <input type="url" class="form-control" id="image" 
-                                       placeholder="https://example.com/image.jpg" required>
-                                <div class="invalid-feedback">
-                                    Please provide a valid image URL.
+                                <label class="form-label">Course Relevance</label>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-muted small mb-2">Select courses this item is relevant for:</p>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="SWE632" name="courseRelevant" id="swe632">
+                                                    <label class="form-check-label" for="swe632">SWE 632 - UI Design and Development</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="CS550" name="courseRelevant" id="cs550">
+                                                    <label class="form-check-label" for="cs550">CS 550 - Database Systems</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="MATH113" name="courseRelevant" id="math113">
+                                                    <label class="form-check-label" for="math113">MATH 113 - Calculus I</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="SWE437" name="courseRelevant" id="swe437">
+                                                    <label class="form-check-label" for="swe437">SWE 437 - Software Testing</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <input type="text" class="form-control-tag" id="otherCourse" 
+                                                   placeholder="Add another course (e.g., CS504)">
+                                            <div class="form-text">Enter additional course codes separated by commas</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <small class="text-muted">For demo purposes, use any valid image URL</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="productImage" class="form-label">Product Image</label>
+                                <div class="image-preview mb-2" id="imagePreview"></div>
+                                <input type="file" 
+                                       class="form-control" 
+                                       id="productImage" 
+                                       accept="image/*"
+                                      onchange="previewImage(this)">
                             </div>
 
                             <div class="mb-3">

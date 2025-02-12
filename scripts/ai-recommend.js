@@ -120,6 +120,62 @@ class ProductRecommender {
             .slice(0, limit)
             .map(item => item.product);
     }
+
+    static courseRequirements = {
+        'SWE632': {
+            required: ['laptop', 'textbook'],
+            recommended: ['tablet', 'monitor'],
+            keywords: ['SWE632', 'UI/UX', 'design', 'software engineering', 'web development', 
+                      'MacBook', 'iPad', 'Figma', 'monitor', 'interface', 'usability']
+        },
+        'CS550': {
+            required: ['laptop', 'textbook'],
+            recommended: ['database software'],
+            keywords: ['database', 'SQL', 'data management', 'MacBook', 'computer']
+        },
+        'MATH113': {
+            required: ['calculator', 'textbook'],
+            recommended: ['notebook'],
+            keywords: ['Calculus', 'calculator', 'math', 'TI-84']
+        },
+        'SWE437': {
+            required: ['laptop', 'textbook'],
+            recommended: ['second monitor'],
+            keywords: ['software', 'engineering', 'development', 'MacBook', 'computer']
+        }
+    };
+
+    static getRecommendationsForCourse(courseCode) {
+        const course = this.courseRequirements[courseCode.toUpperCase()];
+        if (!course) return [];
+
+        // Filter products based on course requirements
+        return products.filter(product => {
+            const matchesKeywords = course.keywords.some(keyword =>
+                product.description.toLowerCase().includes(keyword.toLowerCase()) ||
+                product.title.toLowerCase().includes(keyword.toLowerCase())
+            );
+
+            const isRelevantForCourse = product.courseRelevant?.includes(courseCode.toUpperCase());
+
+            return matchesKeywords || isRelevantForCourse;
+        });
+    }
+
+    static searchWithRecommendations(searchTerm) {
+        // Check if search term includes a course code
+        const courseCodeMatch = searchTerm.match(/[A-Za-z]{2,4}\d{3}/);
+        if (courseCodeMatch) {
+            const courseCode = courseCodeMatch[0].toUpperCase();
+            return this.getRecommendationsForCourse(courseCode);
+        }
+
+        // Regular search if no course code found
+        return products.filter(product =>
+            product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }
 }
 
 // Initialize the recommender
@@ -171,4 +227,16 @@ function getHomePageRecommendations() {
 window.ProductRecommender = {
     updateRecommendations,
     getHomePageRecommendations
-}; 
+};
+
+// Update search functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const recommendations = ProductRecommender.searchWithRecommendations(searchTerm);
+            displayProducts('featured-items-grid', recommendations);
+        });
+    }
+}); 

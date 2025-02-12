@@ -71,7 +71,7 @@ header {
 /* Hero section */
 .hero {
     background: linear-gradient(rgba(0, 102, 51, 0.9), rgba(0, 102, 51, 0.8)),
-                url('../assets/images/gmu-campus.jpg') center/cover;
+                url('/assets/images/Mason360-Banner-4.png') center/cover;
     color: white;
     padding: 6rem 2rem;
     margin-bottom: 3rem;
@@ -102,18 +102,22 @@ header {
 }
 
 .btn-gmu:hover {
-    background-color: #004d26;
+    background-color:var(--gmu-gold);
+    color: var(--gmu-green);
 }
 
+.btn-outline-light:hover{
+    background-color: var(--gmu-gold);
+    color: var(--gmu-green);
+}
 .btn-gmu-outline {
     background-color: transparent;
-    border: 2px solid var(--gmu-green);
+    border: 2px solid var(--gmu-gold);
     color: var(--gmu-gold);
-    font-weight: 500;
 }
 
 .btn-gmu-outline:hover {
-    background-color: var(--gmu-green);
+    background-color: var(--gmu-gold);
     color: white;
 }
 
@@ -159,8 +163,10 @@ header {
 
 .card-body {
     padding: 1.5rem;
+    position: relative;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 .card-title {
@@ -177,18 +183,15 @@ header {
     margin-bottom: 0.5rem;
 }
 
-.badge-condition {
-    background-color: #f8f9fa;
-    color: #666;
-    padding: 0.4em 0.8em;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
+.button {
+    margin-top: 1rem;
+    color: white;
 }
 
 .card-text {
     flex-grow: 1;
     margin-bottom: 1rem;
+    height: 20%;
 }
 
 .btn-gmu {
@@ -251,12 +254,11 @@ footer p {
 }
 
 .badge-condition {
-    background-color: #f8f9fa;
-    color: #666;
+    background-color: var(--gmu-light-gray);
+    color: var(--gmu-gray);
     padding: 0.4em 0.8em;
     border-radius: 4px;
     font-size: 0.85rem;
-    margin-bottom: 1rem;
 }
 
 /* Section Headers */
@@ -349,20 +351,37 @@ footer p {
 }
 
 /* Badges and Tags */
+.badge {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+    white-space: normal;
+    text-align: left;
+}
+
+.badge.bg-success {
+    background-color: var(--gmu-green) !important;
+    color: white;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    max-width: 100%;
+    line-height: 1.4;
+}
+
+.badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
 .badge-gmu {
     background-color: var(--gmu-green);
     color: white;
     padding: 0.5em 1em;
     border-radius: 20px;
     font-weight: 500;
-}
-
-.badge-condition {
-    background-color: var(--gmu-light-gray);
-    color: var(--gmu-gray);
-    padding: 0.4em 0.8em;
-    border-radius: 4px;
-    font-size: 0.85rem;
+  
 }
 
 /* Loading States */
@@ -523,20 +542,11 @@ footer p {
     padding: 2rem 1.5rem;
 }
 
-/* Section spacing */
-.mt-5 {
-    margin-top: 3rem !important;
-}
-
-/* Mission card styles */
-.card.mb-4 {
-    margin-bottom: 2rem !important;
-}
-
 /* Fix card grid spacing */
 .row.g-4 {
     --bs-gutter-x: 2rem;
     --bs-gutter-y: 2rem;
+    margin-top: calc(-1 * var(--bs-gutter-y));
     margin-right: calc(-.5 * var(--bs-gutter-x));
     margin-left: calc(-.5 * var(--bs-gutter-x));
 }
@@ -590,7 +600,7 @@ footer p {
 
 /* Saved card styles */
 #savedCardSection .card {
-    border: 1px solid  #FFCC33;
+    border: 1px solid #dee2e6;
     transition: border-color 0.2s;
 }
 
@@ -603,65 +613,92 @@ footer p {
     border-color: var(--gmu-green);
 }
 
+/* About page layout */
 .about-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.mission-section {
-    padding: 1rem 0;
-}
-
-.developers-section {
-    padding: 1rem 0;
-}
-
-.developers-section .card {
-    height: 100%;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.developers-section .card:hover {
-    transform: translateY(-5px);
-}
-
-@media (max-width: 768px) {
-    .about-container {
-        gap: 1.5rem;
-    }
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     
-    .mission-section,
-    .developers-section {
-        padding: 0.5rem 0;
-    }
-    
-    .about-title {
-        font-size: 1.75rem;
-    }
-    
-    .developers-title {
-        font-size: 1.5rem;
-    }
 }
 
-/* Adjust title sizes */
 .about-title {
-    margin-top: 1rem !important;
-    font-size: 2rem;
-    color: var(--gmu-gold);
+    color: var(--gmu-gray);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Mission section */
+.mission-section {
+    margin-bottom: 4rem;
+}
+
+.mission-section .card {
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Developers section */
+.developers-section {
+    margin-top: 2rem;
 }
 
 .developers-title {
-    font-size: 1.75rem;
-    color: var(--gmu-gold);
-    margin-top: 2rem !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 2rem;
+    color: var(--gmu-gray);
+    margin-bottom: 2rem;
+    text-align: center;
+    margin-top: 4rem;
 }
 
-/* Controls spacing between developer cards */
-.row.g-5 {
-    --bs-gutter-x: 2rem;
-    --bs-gutter-y: 2rem;
-} 
+.developers-section .card {
+    border-radius: 10px;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .about-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .mission-section {
+        margin-bottom: 3rem;
+    }
+    
+    .developers-title {
+        font-size: 1.75rem;
+    }
+}
+
+.btn-outline-secondary{
+    margin-bottom: 1rem;
+}
+
+/* btn-success */
+.btn-success{
+    background-color: var(--gmu-green);
+}
+
+.btn-success:hover{
+    background-color:var(--gmu-gold);
+    color: var(--gmu-green);
+}
+
+.btn-order-search{
+    background-color: var(--gmu-green);
+}
+
+.btn-order-search:hover{
+    background-color: var(--gmu-gold);
+    color: var(--gmu-green);
+}

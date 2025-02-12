@@ -10,7 +10,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Instant Market</a>
+            <a class="navbar-brand" href="home.html">Instant Market</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,7 +18,6 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="products.html">Browse</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="cart.html">
                             Cart <span id="cartCount" class="badge bg-danger rounded-pill"></span>
@@ -27,6 +26,7 @@
                     <li class="nav-item"><a class="nav-link active" href="order-history.html">Orders</a></li>
                 </ul>
                 <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
                 </ul>
             </div>
@@ -42,7 +42,7 @@
                 <div class="input-group">
                     <input type="text" id="orderSearchInput" class="form-control" 
                            placeholder="Search orders by ID, items, or date...">
-                    <button class="btn btn-gmu" type="button" id="orderSearchButton">
+                    <button class="btn btn-order-search" type="button" id="orderSearchButton">
                         Search
                     </button>
                 </div>
@@ -58,6 +58,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/cart.js"></script>
     <script src="scripts/auth.js"></script>
     <script src="scripts/order-history.js"></script>
 </body>

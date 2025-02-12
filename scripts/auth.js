@@ -31,6 +31,7 @@ function checkAuth() {
 
 function logout() {
     sessionStorage.removeItem('userSession');
+    localStorage.removeItem('cart');
     window.location.href = 'login.html';
 }
 

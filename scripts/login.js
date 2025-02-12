@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
+        // Clear any existing session
+        sessionStorage.removeItem('userSession');
+
         // Check credentials
         const user = Object.values(validCredentials).find(
             cred => cred.username === username && cred.password === password
@@ -28,10 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (user) {
             // Store user session
-            sessionStorage.setItem('userSession', JSON.stringify({
+            const userSession = {
                 username: user.username,
-                role: user.role
-            }));
+                role: user.role,
+                loggedIn: true
+            };
+            sessionStorage.setItem('userSession', JSON.stringify(userSession));
 
             redirectBasedOnRole(user.role);
         } else {

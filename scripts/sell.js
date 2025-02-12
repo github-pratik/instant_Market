@@ -26,6 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Get selected courses
+        const selectedCourses = Array.from(document.querySelectorAll('input[name="courseRelevant"]:checked'))
+            .map(checkbox => checkbox.value);
+        
+        // Add other courses if specified
+        const otherCourses = document.getElementById('otherCourse').value
+            .split(',')
+            .map(course => course.trim().toUpperCase())
+            .filter(course => course.match(/[A-Z]{2,4}\d{3}/));
+        
+        const courseRelevant = [...selectedCourses, ...otherCourses];
+
         // Create new product object
         const newProduct = {
             id: generateId(),
@@ -37,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: document.getElementById('image').value,
             contact: document.getElementById('contact').value,
             datePosted: new Date().toISOString(),
+            courseRelevant: courseRelevant.length > 0 ? courseRelevant : undefined,
         };
 
         // Save to localStorage

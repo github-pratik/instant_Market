@@ -1,5 +1,31 @@
-// Cart functionality
+// Initialize cart from localStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Function to update cart count in navbar
+function updateCartCount() {
+    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+    const cartBadge = document.getElementById('cartCount');
+    if (cartBadge) {
+        cartBadge.textContent = cartCount;
+        cartBadge.style.display = cartCount > 0 ? 'inline' : 'none';
+    }
+}
+
+// Initialize cart count when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    // Load cart data from localStorage
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartCount();
+    updateCartDisplay();
+});
+
+// Listen for storage changes (in case cart is updated in another tab)
+window.addEventListener('storage', (e) => {
+    if (e.key === 'cart') {
+        cart = JSON.parse(e.newValue || '[]');
+        updateCartCount();
+    }
+});
 
 // Function to format price
 function formatPrice(price) {
@@ -9,17 +35,7 @@ function formatPrice(price) {
 // Function to update cart display
 function updateCartDisplay() {
     const cartItems = document.getElementById('cartItems');
-    const subtotalElement = document.getElementById('subtotal');
-    const taxElement = document.getElementById('tax');
-    const totalElement = document.getElementById('total');
-
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="text-center">Your cart is empty</p>';
-        subtotalElement.textContent = formatPrice(0);
-        taxElement.textContent = formatPrice(0);
-        totalElement.textContent = formatPrice(0);
-        return;
-    }
+    if (!cartItems) return;
 
     let subtotal = 0;
     cartItems.innerHTML = '';
@@ -29,16 +45,19 @@ function updateCartDisplay() {
         subtotal += itemTotal;
 
         cartItems.innerHTML += `
-            <div class="cart-item mb-3 p-3 border-bottom">
+            <div class="cart-item mb-3 p-3 border rounded">
                 <div class="row align-items-center">
-                    <div class="col-2">
-                        <img src="${item.image}" class="img-fluid rounded" alt="${item.title}">
+                    <div class="col-md-2 col-sm-3 mb-2 mb-md-0">
+                        <img src="${item.image}" 
+                             class="img-fluid rounded" 
+                             alt="${item.title}" 
+                             style="width: 100px; height: 100px; object-fit: cover;">
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-9">
                         <h5 class="mb-1">${item.title}</h5>
                         <p class="text-muted mb-0">Price: ${formatPrice(item.price)}</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3 col-sm-6 mt-2 mt-md-0">
                         <div class="quantity-selector">
                             <button class="btn btn-sm btn-outline-secondary" 
                                     onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
@@ -47,10 +66,10 @@ function updateCartDisplay() {
                                     onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-4 mt-2 mt-md-0">
                         <p class="mb-0">${formatPrice(itemTotal)}</p>
                     </div>
-                    <div class="col-1">
+                    <div class="col-md-1 col-sm-2 mt-2 mt-md-0 text-end">
                         <button class="btn btn-sm btn-outline-danger" 
                                 onclick="removeItem(${item.id})">×</button>
                     </div>
@@ -61,6 +80,10 @@ function updateCartDisplay() {
 
     const tax = subtotal * 0.06; // 6% tax
     const total = subtotal + tax;
+
+    const subtotalElement = document.getElementById('subtotal');
+    const taxElement = document.getElementById('tax');
+    const totalElement = document.getElementById('total');
 
     subtotalElement.textContent = formatPrice(subtotal);
     taxElement.textContent = formatPrice(tax);
@@ -86,16 +109,6 @@ function removeItem(itemId) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartDisplay();
     updateCartCount();
-}
-
-// Function to update cart count in navbar
-function updateCartCount() {
-    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-    const cartBadge = document.getElementById('cartCount');
-    if (cartBadge) {
-        cartBadge.textContent = cartCount;
-        cartBadge.style.display = cartCount > 0 ? 'inline' : 'none';
-    }
 }
 
 // Function to generate receipt
@@ -155,6 +168,9 @@ function generateReceipt(orderDetails) {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Load cart data from localStorage
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+
     updateCartDisplay();
     updateCartCount();
 
@@ -254,4 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { once: true });
         });
     }
+
+    // Update cart count when page loads
+    updateCartCount();
 }); 
